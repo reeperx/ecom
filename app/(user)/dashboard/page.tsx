@@ -5,6 +5,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import React from "react";
 
+
 const DashboardPage = async () => {
   const session = await auth();
 
@@ -18,13 +19,19 @@ const DashboardPage = async () => {
         Welcome to your Dashboard
       </h2>
       <div className="flex items-center gap-3 my-5">
-        <Image
-          src={session?.user?.image as string}
-          alt="userImage"
-          width={200}
-          height={200}
-          className="w-10 h-10 rounded-full"
-        />
+        {session?.user?.image ? (
+          <Image
+            src={session.user.image}
+            alt="userImage"
+            width={200}
+            height={200}
+            className="w-10 h-10 rounded-full"
+          />
+        ) : (
+          <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
+            <p className="text-gray-500">No Image</p>
+          </div>
+        )}
         <div>
           <p>{session?.user?.name}</p>
           <p>{session?.user?.email}</p>

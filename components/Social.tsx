@@ -1,33 +1,37 @@
-"use client";
+import { Button } from "@/components/ui/button";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa";
 
-import React from "react";
-import { Button } from "./ui/button";
-import { FaGoogle, FaFacebook, FaTiktok } from "react-icons/fa";
-import { signIn, useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
-import Loader from "./common/Loader";
+interface SocialProps {
+  onSocialLogin: (provider: string) => void;
+}
 
-const Social = () => {
-  const { data: session, status } = useSession();
-
-  // Check if the session is loading
-  if (status === "loading") {
-    return <Loader />; // Optionally render a loading state
-  }
-
-  if (!session?.user) {
-    redirect("/");
-  }
-
+const Social: React.FC<SocialProps> = ({ onSocialLogin }) => {
   return (
-    <div className="grid grid-cols-3 gap-2">
-      <Button variant="outline" onClick={() => signIn("google")}>
-        <FaGoogle className="h-5 w-5" />
+    <div className="flex items-center w-full gap-x-2">
+      <Button
+        size="lg"
+        className="w-full"
+        variant="outline"
+        onClick={() => onSocialLogin("google")}
+      >
+        <FcGoogle className="h-5 w-5" />
       </Button>
-      <Button variant="outline" onClick={() => signIn("facebook")}>
-        <FaFacebook className="h-5 w-5" />
+      <Button
+        size="lg"
+        className="w-full"
+        variant="outline"
+        onClick={() => onSocialLogin("facebook")}
+      >
+        <FaFacebook className="h-5 w-5 text-blue-600" />
       </Button>
-      <Button variant="outline" onClick={() => signIn("tiktok")}>
+      <Button
+        size="lg"
+        className="w-full"
+        variant="outline"
+        onClick={() => onSocialLogin("tiktok")}
+      >
         <FaTiktok className="h-5 w-5" />
       </Button>
     </div>

@@ -31,15 +31,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
       >
-        <Layout>
-          <Header />
-          {children}
-          <Sidebar />
-          <Footer />
-          <Toaster richColors />
-        </Layout>
+        <div className="flex-1">
+          <Layout>
+            <Header />
+            {children}
+            <Sidebar />
+            <Toaster richColors />
+          </Layout>
+        </div>
+        <Footer />
       </body>
     </html>
   );
