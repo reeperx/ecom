@@ -47,18 +47,20 @@ const Searchbar = () => {
   };
 
   const handleResultClick = (item: ProductData) => {
-    router.push(`/product/${item?.slug.current}`); // Adjust the URL as per your routing structure
+    router.push(`/product/${item?.slug.current}`);
+    setSearch(""); // Clear the search field
+    setSearchResults([]); // Close the search results
   };
 
   return (
     <div className="relative">
       {/* Search Bar */}
-      <div className="w-full hidden md:inline-flex flex-1 h-12 text-base items-center justify-center relative">
-        <Search className="absolute left-1.5 mt-0.5 text-green-600" />
+      <div className="w-full max-w-4xl mx-auto flex items-center justify-between relative h-12">
+        <Search className="absolute left-3 text-green-600" />
         <Input
           type="text"
           placeholder="Search Products..."
-          className="flex-1 h-full outline-none bg-transparent placeholder-text-gray-300 border-[1px] border-green-600 rounded-md pl-8 pr-28"
+          className="flex-1 h-full outline-none bg-transparent placeholder-text-gray-300 border-[1px] border-green-600 rounded-md pl-10 pr-28"
           onChange={(e) => setSearch(e.target.value)}
           value={search}
         />
@@ -90,7 +92,7 @@ const Searchbar = () => {
         <div
           className="absolute top-full left-0 mt-2 bg-white/90 backdrop-blur-md rounded-md shadow-md border border-green-600 z-50"
           style={{
-            width: "100%", // Matches the width of the search bar
+            width: "100%", // Ensure the results take the full width of the search bar
           }}
         >
           {searchResults.map((item: ProductData) => (
@@ -102,8 +104,8 @@ const Searchbar = () => {
               <Image
                 src={urlFor(item?.image).url()}
                 alt={item?._type}
-                width={20}
-                height={20}
+                width={40}
+                height={40}
                 className="w-10 h-10 object-cover rounded-md mr-2"
               />
               <div>
