@@ -7,8 +7,8 @@ const Logo = () => {
         <div>
             <Link href={"/"} className="flex justify-center items-center">
                 <Image
-                    src={"/logo.png"}
-                    alt={"site logo"}
+                    src="/logo.png"
+                    alt="site logo"
                     width={90}
                     height={90}
                     priority
